@@ -74,6 +74,7 @@ def main():
         # !!!!!! BUGGGG: line 65 first index: [0] ??? Leap Years??? Straight up some wrong values 
             ani_release_date = str(page_soup.findAll("div", {"class": "info"})[i]).removeprefix('<').partition('"item">')[2]
             ani_release_date = ani_release_date.split('<', 1)[0].replace(',', '').split(' ')
+            #[DEBUGGING] ani_release_date = str(ani_release_date.remove(','))
             ani_release_sched = datetime.date(int(ani_release_date[2]), int(ani_release_date[1]), months_dict[ani_release_date[0]])
             #[DEBUGGING] print("datetime: ", ani_release_sched)
             ani_release_sched = int(ani_release_sched.weekday())
@@ -90,7 +91,7 @@ def main():
             ani_release_date = str(ani_release_date.remove(','))
 
         # Writing data into csv file
-            f.write(str(ani_title.replace(',', ' ')) + "," + str(ani_rating) + "," + ani_release_date + "," + str(ani_release_sched) + "\n")
+            f.write(str(ani_title.replace(',', ' ')) + "," + ani_rating + "," + ani_release_date + "," + str(ani_release_sched) + "\n")
 
         except(UnicodeEncodeError and ValueError):
             print('An invalid entry has been skipped\n\n')
