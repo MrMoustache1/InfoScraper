@@ -16,3 +16,5 @@ uClient.close()
 
 # Now we need to parse the HMTL using bs4
 page_soup = soup(page_html, "html.parser")
+
+# Now we want to traverse the html
