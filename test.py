@@ -1,86 +1,26 @@
-import datetime as dt
 
-# Basic Data Types:
-my_str = 'string here'
-my_int = 1234567890
-my_bool = True
-
-# Lists
-empty_list = []
-my_list = [my_int, 'str_entry1', my_str]
-my_list2 = [my_int, 'str_entry1', [my_list]]
-
-# Dictionaries
-empty_dict = {}
-
-my_dict = {
-    "key": "value1",
-    "key2": "value2"}
-   
-my_dict2 = {
-    "key": 1,
-    "key2": my_list}
-    
-# Type casting
-my_str = '123'
-my_str_converted_to_int = int(my_str)
-my_int_converted_to_str = str(my_str_converted_to_int)
-
-
-# Functions
-    # to create your own function (parameters are optional):
-#def func_name(parameters):
-    # Do something
-    #print(parameters , "\n")
-
-# to call any function:
-#func_name("something")
-
-
-# Methods
-random_str = "something random here"
-# create to list
-str_list = random_str.split()
-
-#print(str_list, "\n\n")
-
-length_of_str_list = len(str_list)
-#print(length_of_str_list , "\n")
-
-# Loops
-for i in range(len(str_list)):
-    print(i)
-    print(str_list[i])
-    if len(str_list[i]) > 2:
-        continue
-    else:
-        len(str_list[i]) < len(str_list[i+1])
-        print("less letters than next word \n")
-
-#print()
-#for i in str_list:
-    #print(i)
-
-# Using datetime
-current_time = dt.datetime.now()
-print("\n", current_time)
-
-# Want 2023-01-16 
-
-date = str(current_time)
-
-print((date.split()[0]).replace("-", " "))
-print("\n\n\n")
-
-"""my_list = date.split()
-print(my_list[0])"""
-
-
-# Getting just car
-str = 'header=paragraph<tag>car</tag>'
-
-print(str.split('>'))
-str = str.split('>')[1].split('<')[0]
-print(str)
-
-# paragraph<tag> car</tag>
+# Import DictWriter class from CSV module
+from csv import DictWriter
+ 
+# list of column names
+field_names = ['ID', 'NAME', 'RANK',
+               'ARTICLE', 'COUNTRY']
+ 
+# Dictionary that we want to add as a new row
+dict = {'ID': 6, 'NAME': 'William', 'RANK': 5532,
+        'ARTICLE': 1, 'COUNTRY': 'UAE'}
+ 
+# Open CSV file in append mode
+# Create a file object for this file
+with open('event.csv', 'a') as f_object:
+ 
+    # Pass the file object and a list
+    # of column names to DictWriter()
+    # You will get a object of DictWriter
+    dictwriter_object = DictWriter(f_object, fieldnames=field_names)
+ 
+    # Pass the dictionary as an argument to the Writerow()
+    dictwriter_object.writerow(dict)
+ 
+    # Close the file object
+    f_object.close()
