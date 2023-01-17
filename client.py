@@ -1,9 +1,10 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
-import csv
+#import csv
 from csv import DictWriter
 import datetime
 import pandas as pd
+import header_csv
 
 def main():
     # URL to scrape ... currently set to the anime season page on MAL
@@ -31,10 +32,11 @@ def main():
     # HAVE TO WRITE ONE ARGUMENT AT A TIME, SO FORMAT IT
     #data = ani_title.replace(',', ' ') + "," + ani_score
     #list_of_data = [ani_title, ani_score]
-    field_names = ["anime_name", "rating"]
-    list_of_ani_titles = []
-    list_of_ani_ratings = []
-    dict = {}
+    #field_names = ["anime_name", "rating"]
+    #field_names = "anime_name, rating"
+    #list_of_ani_titles = []
+    #list_of_ani_ratings = []
+    #dict = {}
 
 
     # Now we want to traverse the html and find the container objects of each anime... can access each like a py list (indexed)
@@ -47,7 +49,7 @@ def main():
     print("\n\n")
     print(ani_title)
     #list_of_ani_titles.append(ani_title)
-    dict["anime_name"] = ani_title
+    #dict["anime_name"] = ani_title
 
 
     # Getting anime rating
@@ -57,10 +59,10 @@ def main():
     print(ani_score)
     print("\n\n")
     #list_of_ani_ratings.append(ani_score)
-    dict["rating"] = ani_score
+    #dict["rating"] = ani_score
 
-    print(list_of_ani_ratings)
-    print(list_of_ani_titles)
+    #print(list_of_ani_ratings)
+    #print(list_of_ani_titles)
     # Get writer object
     #writer_object = writer(f)
 
@@ -68,12 +70,14 @@ def main():
     #f.write(list_of_data)
     #writer_object.writerow(list_of_data)
 
-    # Open CSV file
-    with open('CSV_Database.csv', 'a') as f_object:
+    # CSV connection with header file
+    header_csv.csv_create_and_fill(ani_title, ani_score)
+
+"""    with open('CSV_Database.csv', 'a') as f_object:
         dictwriter_object = DictWriter(f_object, fieldnames = field_names)
         dictwriter_object.writerow(dict)
         # Close CSV file
-        f_object.close()
+        f_object.close()"""
 
 if __name__ == '__main__':
     main()
