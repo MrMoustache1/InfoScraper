@@ -1,7 +1,5 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
-
-# import csv
 from csv import DictWriter
 import datetime
 import pandas as pd
@@ -31,6 +29,8 @@ def main():
             "class": "js-anime-category-producer seasonal-anime js-seasonal-anime js-anime-type-all js-anime-type-1"
         },
     )
+
+    # Looping for every anime container on that page
     for i in range(len(containers)):
         try:
             # Getting anime title
@@ -45,10 +45,11 @@ def main():
             ani_score = ani_score.split(">", 2)[2].split(">")[1].split()[0]
             print(ani_score)
 
-            # CSV connection with header file
+            # Calling csv_create_and_fill func from ./csv_writer.py file
             csv_writer.csv_create_and_fill(ani_title, ani_score)
-            
-        except(UnicodeEncodeError):
+
+        # Error handling. There are some anime titles with invalid unicode chars
+        except (UnicodeEncodeError):
             print("Encountered Unicode Encode Error for an anime title")
             continue
 
