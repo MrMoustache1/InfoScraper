@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup as soup
 from csv import DictWriter
 import datetime
 import pandas as pd
-import header_csv
+import csv_writer
 
 
 def main():
@@ -31,23 +31,26 @@ def main():
             "class": "js-anime-category-producer seasonal-anime js-seasonal-anime js-anime-type-all js-anime-type-1"
         },
     )
-    print(containers[0])
+    for i in range(len(containers)):
+        try:
+            # Getting anime title
+            ani_title = str(containers[i].h2)
+            ani_title = ani_title.split(">")[2].split("<")[0]
+            print("\n\n")
+            print(ani_title)
 
-    # Getting anime title
-    ani_title = str(containers[0].h2)
-    ani_title = ani_title.split(">")[2].split("<")[0]
-    print("\n\n")
-    print(ani_title)
+            # Getting anime rating
+            ani_score = str(containers[i])
+            ani_score = str(page_soup.findAll("div", {"title": "Score"})[i])
+            ani_score = ani_score.split(">", 2)[2].split(">")[1].split()[0]
+            print(ani_score)
 
-    # Getting anime rating
-    ani_score = str(containers[0])
-    ani_score = str(page_soup.findAll("div", {"title": "Score"})[0])
-    ani_score = ani_score.split(">", 2)[2].split(">")[1].split()[0]
-    print(ani_score)
-    print("\n\n")
-
-    # CSV connection with header file
-    header_csv.csv_create_and_fill(ani_title, ani_score)
+            # CSV connection with header file
+            csv_writer.csv_create_and_fill(ani_title, ani_score)
+            
+        except(UnicodeEncodeError):
+            print("Encountered Unicode Encode Error for an anime title")
+            continue
 
 
 if __name__ == "__main__":
