@@ -1,3 +1,14 @@
+> # Feb 13, 2023
+> ### Changelog
+> * Merged all to main branch and removed scraper_debugger branch
+> ### Bug list
+> * .gitignore file not ignoring generated csv files
+> ### To-do list
+> - [ ] Deploy website using GitHub Pages
+> - [ ] Add more functionality to scraper
+> - [ ] Begin web dev
+> - [ ] Fix bugs
+> 
 > # Jan 27, 2023
 > ### Changelog
 > * Fixed most bugs in the scrapper (removed any dating functionality in scrapper)
