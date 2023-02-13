@@ -2,3 +2,4 @@
 example_container.html
 client_backup.py
 CSV_Database.csv
+__pycache__
