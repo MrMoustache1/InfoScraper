@@ -1,8 +1,6 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 from csv import DictWriter
-import datetime
-import pandas as pd
 import csv_writer
 
 
